@@ -4,55 +4,24 @@
 class Functor {
 public:
 	bool deriv;
-	virtual void operator() (double &x) {}
-};
-
-class Sigm:public Functor
-{
-public:
-	Sigm(bool deriv){
-		this->deriv = deriv;
-	};
-	void operator() (double &x)
-	{
-		if (deriv) {
-			x = (1 / (1 + exp(-x))) * (1 - (1 / (1 + exp(-x))));
-		}
-		else {
-			x = (1 / (1 + exp(-x)));
-		}
-	}
-};
-
-class ReLu :public Functor
-{
-public:
-	ReLu(bool deriv) {
-		this->deriv = deriv;
-	};
-	void operator() (double &x)
-	{
-		if (deriv) {
-			x = (rand() % 400 + 100) / 100;
-		}
-		else {
-			x = fmax(x, 0);
-		}
-	}
-};
-
-class Function {
-public:
-	Functor * f;
-	Function(std::string function, bool deriv) {
-		if (function == "Sigm") {
-			f = new Sigm(deriv);
-		}
-		else if (function == "ReLu") {
-			f = new ReLu(deriv);
-		}
-	}
+	std::string function;
+	Functor(std::string function, bool deriv): function(function), deriv(deriv) {}
 	void operator() (double &x) {
-		f->operator()(x);
+		if (function == "Sigm") {
+			if (deriv) {
+				x = (1 / (1 + exp(-x))) * (1 - (1 / (1 + exp(-x))));
+			}
+			else {
+				x = (1 / (1 + exp(-x)));
+			}
+		}
+		if (function == "ReLu") {
+			if (deriv) {
+				x = (rand() % 400 + 100) / 100;
+			}
+			else {
+				x = fmax(x, 0);
+			}
+		}
 	}
 };
