@@ -1,5 +1,12 @@
 #pragma once
 #include "stdafx.h"
+class Function {
+public:
+	Functor* f;
+	Function(std::string function) {
+		if(function=="")
+	}
+};
 
 class Functor {
 public:
@@ -38,21 +45,5 @@ public:
 		else {
 			x = fmax(x, 0);
 		}
-	}
-};
-
-class Function {
-public:
-	Functor * f;
-	Function(std::string function, bool deriv) {
-		if (function == "Sigm") {
-			f = new Sigm(deriv);
-		}
-		else if (function == "ReLu") {
-			f = new ReLu(deriv);
-		}
-	}
-	void operator() (double &x) {
-		f->operator()(x);
 	}
 };
