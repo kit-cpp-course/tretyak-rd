@@ -9,7 +9,7 @@ public:
 			Layers[i] = new Perceptron(sizes[2 * i], sizes[2 * i + 1], "Sigm");
 		}
 	}
-	void train(int ages, int error_step, arma::mat& input, arma::mat& etalon) {
+	void train(int ages, int error_step, double speed, arma::mat& input, arma::mat& etalon) {
 		for (int i = 0; i < ages; i++) {
 			std::vector<arma::mat> outputs(Layers.size()+1);
 			outputs[0] = input;
@@ -18,9 +18,9 @@ public:
 			}
 			arma::mat error = etalon - outputs[outputs.size() - 1];
 			if (i%error_step ==0)
-				std::cout << mean(error)<<std::endl;
+				std::cout << abs(mean(error)) <<std::endl;
 			for (int j = Layers.size() - 1; j > -1; j--) {
-				error = Layers[j]->train(error, outputs[j], outputs[j+1]);
+				error = Layers[j]->train(error, outputs[j], outputs[j+1], speed);
 			}
 		}
 	}

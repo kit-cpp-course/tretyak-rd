@@ -1,3 +1,10 @@
-﻿  NuralWeb.cpp
+﻿  stdafx.cpp
+e:\real projects vs\tretyak-rd\nuralweb\nuralweb.h(22): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  NuralWeb.cpp
+  Bitmap.cpp
+e:\real projects vs\tretyak-rd\nuralweb\bitmap.cpp(32): warning C4018: <: несоответствие типов со знаком и без знака
+e:\real projects vs\tretyak-rd\nuralweb\bitmap.cpp(58): warning C4018: <: несоответствие типов со знаком и без знака
+e:\real projects vs\tretyak-rd\nuralweb\bitmap.cpp(59): warning C4018: <: несоответствие типов со знаком и без знака
+  Создание кода...
   NuralWeb.vcxproj -> E:\REAL PROJECTS VS\tretyak-rd\NuralWeb\x64\Debug\NuralWeb.exe
   NuralWeb.vcxproj -> E:\REAL PROJECTS VS\tretyak-rd\NuralWeb\x64\Debug\NuralWeb.pdb (Full PDB)

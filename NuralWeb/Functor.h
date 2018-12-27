@@ -18,7 +18,7 @@ public:
 		}
 		if (function == "ReLu") {
 			if (deriv) {
-				x = (rand() % 400 + 100) / 100;
+				x = (rand() % 400 + 100) / 1000;
 			}
 			else {
 				x = fmax(x, 0);
