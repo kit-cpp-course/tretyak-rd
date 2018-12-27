@@ -5,6 +5,7 @@ class Functor {
 public:
 	bool deriv;
 	std::string function;
+	Functor() {}
 	Functor(std::string function, bool deriv): function(function), deriv(deriv) {}
 	void operator() (double &x) {
 		if (function == "Sigm") {
