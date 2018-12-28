@@ -9,7 +9,5 @@ public:
 
 	Bitmap(const char* path);
 
-	double** getArray();
-
-	friend std::ostream& operator<<(std::ostream& stream, Bitmap& bm);
+	arma::mat getArray();
 };

@@ -22,15 +22,13 @@ Bitmap::Bitmap(const char* path) {
 	file.read((char*)&height, sizeof(int));
 };
 
-double** Bitmap::getArray() {
+arma::mat Bitmap::getArray() {
 	int pixels_adress = 0;
 	file.seekg(10, std::ios::beg);
 	file.read((char*)&pixels_adress, sizeof(int));
 	file.seekg(pixels_adress, std::ios::beg);
 
-	double **img = new double*[height];
-	for (int i = 0; i < height; i++)
-		img[i] = new double[width];
+	arma::mat img(height, width);
 
 	unsigned int bgr = 0;
 
@@ -41,26 +39,13 @@ double** Bitmap::getArray() {
 			file.read((char*)&bgr, 3);
 
 			if (bgr == 0xFFFFFF)
-				img[x][y] = 0;
+				img.at(width - x - 1, y) = 0;
 			else
-				img[x][y] = 1;
+				img.at(width - x - 1, y) = 1;
 
 			bgr = 0;
 		}
 	}
 
-	roll90(img, height, width);
-	return img;
-}
-
-std::ostream& operator<< (std::ostream& stream, Bitmap& bm) {
-	double** img = bm.getArray();
-	for (int i = 0; i < bm.height; i++) {
-		for (int j = 0; j < bm.width; j++) {
-			stream << img[i][j];
-			if ((i * bm.height + j) % bm.width == 0)
-				stream << std::endl;
-		}
-	}
-	return stream;
+	return img.t();
 }

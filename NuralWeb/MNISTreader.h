@@ -39,7 +39,7 @@ private:
 						tp(r, c) = ((double)temp != 0.0) ? 1.0 : 0.0;
 					}
 				}
-				vec.push_back(tp);
+				vec[i] = tp;
 			}
 		}
 	}
